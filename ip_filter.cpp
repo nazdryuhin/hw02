@@ -29,20 +29,8 @@ std::vector<std::string> split(const std::string &str, char d)
     return r;
 }
 
-int main(int argc, char const *argv[])
-{
-    try
-    {
-        std::vector<std::vector<std::string> > ip_pool;
-
-        for(std::string line; std::getline(std::cin, line);)
-        {
-            std::vector<std::string> v = split(line, '\t');
-            ip_pool.push_back(split(v.at(0), '.'));
-        }
-
-        // TODO reverse lexicographically sort
-
+void print(std::vector<std::vector<std::string> > &ip_pool) {
+    
         for(std::vector<std::vector<std::string> >::const_iterator ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
         {
             for(std::vector<std::string>::const_iterator ip_part = ip->cbegin(); ip_part != ip->cend(); ++ip_part)
@@ -56,6 +44,22 @@ int main(int argc, char const *argv[])
             }
             std::cout << std::endl;
         }
+}
+
+int main(int argc, char const *argv[])
+{
+    try
+    {
+        std::vector<std::vector<std::string> > ip_pool;
+
+        for(std::string line; std::getline(std::cin, line);)
+        {
+            std::vector<std::string> v = split(line, '\t');
+            ip_pool.push_back(split(v.at(0), '.'));
+        }
+
+        // TODO reverse lexicographically sort
+        print(ip_pool);
 
         // 222.173.235.246
         // 222.130.177.64
