@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "ip_class.h"
 
@@ -50,6 +51,7 @@ int main(/*int argc, char const *argv[]*/)
         }
 
         // TODO reverse lexicographically sort
+        std::sort(ip_pool.rbegin(), ip_pool.rend());
         print(ip_pool);
 
         // 222.173.235.246
