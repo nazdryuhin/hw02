@@ -27,3 +27,8 @@ IpAddress::IpAddress(const std::vector<std::string>& ip_vstr) {
         std::cerr << e.what() << std::endl;
     }
 }
+
+std::ostream& operator << (std::ostream& stream, const IpAddress& ip) {
+    stream << ip.addr[0] << '.' << ip.addr[1] << '.' << ip.addr[2] << '.' << ip.addr[3];
+    return stream;
+}
