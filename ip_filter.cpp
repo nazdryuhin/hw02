@@ -6,6 +6,7 @@
 #include <algorithm>
 
 #include "ip_class.h"
+#include "filters.h"
 
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
@@ -32,7 +33,7 @@ std::vector<std::string> split(const std::string &str, char d)
     return r;
 }
 
-void print(std::vector<IpAddress> &ip_pool) {
+void print(const std::vector<IpAddress> &ip_pool) {
     for(const auto& ip : ip_pool) {
         std::cout << ip << '\n';
     }
@@ -81,6 +82,7 @@ int main(/*int argc, char const *argv[]*/)
 
         // TODO filter by any byte and output
         // ip = filter_any(46)
+        print(FilterAny(ip_pool, 46));
 
         // 186.204.34.46
         // 186.46.222.194
