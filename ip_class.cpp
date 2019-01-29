@@ -51,3 +51,9 @@ bool IpAddress::equal_any_field(int mask) const {
     }
     return false;
 }
+
+bool equal_m(const IpAddress& ip, unsigned int iter) {
+    if(iter <= ip.addr.size())
+        return true;
+    return false;
+}
