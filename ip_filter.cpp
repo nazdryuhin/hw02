@@ -65,6 +65,7 @@ int main(/*int argc, char const *argv[]*/)
 
         // TODO filter by first byte and output
         // ip = filter(1)
+        print(Filter(ip_pool, 1));
 
         // 1.231.69.33
         // 1.87.203.225
@@ -74,6 +75,7 @@ int main(/*int argc, char const *argv[]*/)
 
         // TODO filter by first and second bytes and output
         // ip = filter(46, 70)
+        print(Filter(ip_pool, 46, 70));
 
         // 46.70.225.39
         // 46.70.147.26
