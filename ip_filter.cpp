@@ -31,21 +31,10 @@ std::vector<std::string> split(const std::string &str, char d)
     return r;
 }
 
-void print(std::vector<std::vector<std::string> > &ip_pool) {
-    
-        for(std::vector<std::vector<std::string> >::const_iterator ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
-        {
-            for(std::vector<std::string>::const_iterator ip_part = ip->cbegin(); ip_part != ip->cend(); ++ip_part)
-            {
-                if (ip_part != ip->cbegin())
-                {
-                    std::cout << ".";
-
-                }
-                std::cout << *ip_part;
-            }
-            std::cout << std::endl;
-        }
+void print(std::vector<IpAddress> &ip_pool) {
+    for(const auto& ip : ip_pool) {
+        std::cout << ip << '\n';
+    }
 }
 
 int main(/*int argc, char const *argv[]*/)
@@ -61,7 +50,7 @@ int main(/*int argc, char const *argv[]*/)
         }
 
         // TODO reverse lexicographically sort
-        //print(ip_pool);
+        print(ip_pool);
 
         // 222.173.235.246
         // 222.130.177.64
