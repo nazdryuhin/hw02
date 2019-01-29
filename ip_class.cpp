@@ -39,6 +39,12 @@ bool operator < (const IpAddress& lhs, const IpAddress& rhs) {
     return lhs_key < rhs_key;
 }
 
+bool operator == (const IpAddress& lhs, const IpAddress& rhs) {
+    auto lhs_key = std::tie(lhs.addr[0], lhs.addr[1], lhs.addr[2], lhs.addr[3]);
+    auto rhs_key = std::tie(rhs.addr[0], rhs.addr[1], rhs.addr[2], rhs.addr[3]);
+    return lhs_key == rhs_key;
+}
+
 bool IpAddress::equal_any_field(int mask) const {
     if((0 <= mask) && (mask < 256)) {
         return std::find(addr.begin(), addr.end(), mask) != addr.end();
