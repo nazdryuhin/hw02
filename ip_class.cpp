@@ -32,3 +32,9 @@ std::ostream& operator << (std::ostream& stream, const IpAddress& ip) {
     stream << ip.addr[0] << '.' << ip.addr[1] << '.' << ip.addr[2] << '.' << ip.addr[3];
     return stream;
 }
+
+bool operator < (const IpAddress& lhs, const IpAddress& rhs) {
+    auto lhs_key = std::tie(lhs.addr[0], lhs.addr[1], lhs.addr[2], lhs.addr[3]);
+    auto rhs_key = std::tie(rhs.addr[0], rhs.addr[1], rhs.addr[2], rhs.addr[3]);
+    return lhs_key < rhs_key;
+}

@@ -10,6 +10,7 @@ public:
     IpAddress();                                     
     IpAddress(const std::vector<std::string>& ip_vstr);                    
     friend std::ostream& operator << (std::ostream& stream, const IpAddress& ip);
+    friend bool operator < (const IpAddress& lhs, const IpAddress& rhs);
 private:
     std::array<int, 4> addr = {0, 0, 0, 0};                                 
 };
