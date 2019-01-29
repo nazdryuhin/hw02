@@ -10,15 +10,22 @@ add_executable(ip_filter ip_filter.cpp)
 
 add_library(ip_class ip_class.cpp)
 
+add_library(filters filters.cpp)
+
 add_executable(test_ip_class test_ip_class.cpp)
 
-set_target_properties(ip_filter ip_class test_ip_class PROPERTIES
+set_target_properties(ip_filter ip_class filters test_ip_class PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 )
 
 target_link_libraries(ip_filter 
+    ip_class
+    filters
+)
+
+target_link_libraries(filters 
     ip_class
 )
 
