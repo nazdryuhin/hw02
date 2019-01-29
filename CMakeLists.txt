@@ -14,7 +14,9 @@ add_library(filters filters.cpp)
 
 add_executable(test_ip_class test_ip_class.cpp)
 
-set_target_properties(ip_filter ip_class filters test_ip_class PROPERTIES
+add_executable(test_filters test_filters.cpp)
+
+set_target_properties(ip_filter ip_class filters test_ip_class test_filters PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
@@ -38,6 +40,12 @@ target_link_libraries(test_ip_class
     GTest::Main
 )
 
+target_link_libraries(test_filters
+    GTest::GTest
+    GTest::Main
+    ip_class
+)
+
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
@@ -53,3 +61,4 @@ include(CPack)
 enable_testing()
 
 add_test(test_ip_class test_ip_class)
+add_test(test_filters test_filters)
