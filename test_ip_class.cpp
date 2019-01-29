@@ -13,3 +13,18 @@ TEST (EqualAnuFieldTest, test) {
 
 }
 
+TEST (EqualMaskTest, test) {
+    IpAddress ip = {{"39", "46", "86", "85"}};
+
+    EXPECT_TRUE (ip.equal_mask(39, 46, 86, 85));
+    EXPECT_TRUE (ip.equal_mask(39, 46, 86));
+    EXPECT_TRUE (ip.equal_mask(39, 46));
+    EXPECT_TRUE (ip.equal_mask(39));
+
+    EXPECT_FALSE (ip.equal_mask(39, 46, 86, 85, 100));
+    EXPECT_FALSE (ip.equal_mask(3, 46, 86, 85));
+    EXPECT_FALSE (ip.equal_mask(39, 4, 86, 85));
+    EXPECT_FALSE (ip.equal_mask(39, 46, 8, 85));
+    EXPECT_FALSE (ip.equal_mask(39, 46, 86, 8));
+
+}
