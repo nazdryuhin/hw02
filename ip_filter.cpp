@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "ip_class.h"
+
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
 // ("..", '.') -> ["", "", ""]
@@ -46,11 +48,11 @@ void print(std::vector<std::vector<std::string> > &ip_pool) {
         }
 }
 
-int main(int argc, char const *argv[])
+int main(/*int argc, char const *argv[]*/)
 {
     try
     {
-        std::vector<std::vector<std::string> > ip_pool;
+        std::vector<IpAddress> ip_pool;
 
         for(std::string line; std::getline(std::cin, line);)
         {
@@ -59,7 +61,7 @@ int main(int argc, char const *argv[])
         }
 
         // TODO reverse lexicographically sort
-        print(ip_pool);
+        //print(ip_pool);
 
         // 222.173.235.246
         // 222.130.177.64
