@@ -48,3 +48,31 @@ TEST (FiltersTest, FilterAny){
     std::vector<IpAddress> out_etalon3 = {};
     EXPECT_TRUE (compare(out_ip, out_etalon3));
 }
+
+TEST (FiltersTest, Filter){
+    auto out_ip = Filter(in_ip, 1);
+    std::vector<IpAddress> out_etalon1 = {
+        {{"1", "70", "44", "170"}},
+        {{"1", "29", "168", "152"}},
+        {{"1", "1", "234", "8"}}
+    };
+    EXPECT_TRUE (compare(out_ip, out_etalon1));
+
+    out_ip = Filter(in_ip, 46, 70);
+    std::vector<IpAddress> out_etalon2 = {
+        {{"46", "70", "225", "39"}},
+        {{"46", "70", "147", "26"}},
+        {{"46", "70", "113", "73"}},
+        {{"46", "70", "29", "76"}},
+    };
+    EXPECT_TRUE (compare(out_ip, out_etalon2));
+
+    out_ip = Filter(in_ip, 46, 70, 113);
+    std::vector<IpAddress> out_etalon3 = {
+        {{"46", "70", "113", "73"}},
+    };
+    EXPECT_TRUE (compare(out_ip, out_etalon3));
+
+    out_ip = Filter(in_ip, 46, 70, 113, 255);
+    std::vector<IpAddress> out_etalon4 = {};
+}
