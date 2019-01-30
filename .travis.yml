@@ -1,14 +1,22 @@
 language: cpp
 before_script:
-- sudo apt update
 - sudo apt install libboost-all-dev libgtest-dev cmake -y
-- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list.d/xenial.list
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - cd /usr/src/gtest
 - sudo cmake .
 - sudo cmake --build .
 - sudo cp *.a /usr/lib
 - cd ${TRAVIS_BUILD_DIR}
-- sudo apt update
+- sudo apt-get update -qq
+before_install:
+    #C++17
+    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+    - sudo apt-get update -qq
+# Install dependencies
+install: 
+  # C++17
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 script:
 - cmake .
 - cmake --build .
