@@ -1,7 +1,7 @@
 language: cpp
 before_script:
 - sudo apt update
-- sudo apt install libgtest-dev cmake -y
+- sudo apt install libboost-all-dev libgtest-dev cmake -y
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list.d/xenial.list
 - cd /usr/src/gtest
 - sudo cmake .
