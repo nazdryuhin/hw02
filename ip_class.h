@@ -16,6 +16,8 @@ public:
     
     template<typename... Mask>                                              
     bool equal_mask(Mask... mask) const; 
+    template<typename... Mask>
+    void by_mask(Mask... mask);
 private:
 
     friend bool equal_m(const IpAddress& ip, unsigned int iter);
@@ -34,4 +36,23 @@ bool equal_m(const IpAddress& ip, unsigned int iter, T t, Mask... mask) {
 template<typename... Mask>
 bool IpAddress::equal_mask(Mask... mask) const {
     return equal_m(*this, 0, mask...);
+}
+
+template<typename... Mask>
+void IpAddress::by_mask(Mask... mask) {
+    try {                                                                   
+        std::array <int, sizeof...(mask)> msk = {mask...};                  
+        unsigned int i = 0;                                                          
+        for(const auto& m : msk) {                                          
+            addr.at(i) = m;                                        
+            ++i;                                                            
+        }
+        while(i < addr.size()) {
+            addr[i] = msk.back();
+            ++i;
+        }
+    }                                                                       
+    catch(const std::exception &e) {                                        
+        std::cerr << e.what() << std::endl;                                 
+    }             
 }
